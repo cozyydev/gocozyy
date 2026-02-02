@@ -72,7 +72,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 Clone the repository and build:
 
 ```bash
-git clone https://github.com/yourusername/gokozyy.git
+git clone https://github.com/kozykoding/gokozyy.git
 cd gokozyy
 make build
 sudo mv ./main /usr/local/bin/gokozyy
