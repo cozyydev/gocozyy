@@ -58,7 +58,7 @@ A modern, interactive CLI tool for scaffolding full-stack web applications with 
 Requires Go 1.23 or higher:
 
 ```bash
-go install github.com/yourusername/gokozyy@latest
+go install github.com/kozykoding/gokozyy@latest
 ```
 
 Make sure your `$GOPATH/bin` is in your `PATH`:
