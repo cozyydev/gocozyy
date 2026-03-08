@@ -56,11 +56,11 @@ func runGoModInit(dir, modulePath string) error {
 	cmd.Dir = dir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-	if err := cmd.Run(); err != nil {
-		return err
-	}
+	return cmd.Run()
+}
 
-	cmd = exec.Command("go", "mod", "tidy")
+func runGoModTidy(dir string) error {
+	cmd := exec.Command("go", "mod", "tidy")
 	cmd.Dir = dir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -127,6 +127,11 @@ func generateBackend(cfg Config) error {
 	// 4) DB scaffolding (internal/database + driver imports)
 	if err := setupDatabase(cfg, backendDir); err != nil {
 		return fmt.Errorf("database setup: %w", err)
+	}
+
+	// 4b) Download Go dependencies
+	if err := runGoModTidy(backendDir); err != nil {
+		return fmt.Errorf("go mod tidy: %w", err)
 	}
 
 	// 5) .env + .gitignore at project root
