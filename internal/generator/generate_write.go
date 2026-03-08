@@ -10,12 +10,12 @@ func writeEnvFile(cfg Config) error {
 
 	content := `PORT=42069
 APP_ENV=local
-GOKOZYY_DB_HOST=localhost
-GOKOZYY_DB_PORT=5432
-GOKOZYY_DB_DATABASE=gokozyy
-GOKOZYY_DB_USERNAME=sammy
-GOKOZYY_DB_PW=thisismypassword
-GOKOZYY_DB_SCHEMA=public
+GOCOZYY_DB_HOST=localhost
+GOCOZYY_DB_PORT=5432
+GOCOZYY_DB_DATABASE=gocozyy
+GOCOZYY_DB_USERNAME=sammy
+GOCOZYY_DB_PW=thisismypassword
+GOCOZYY_DB_SCHEMA=public
 `
 
 	return os.WriteFile(envPath, []byte(content), 0o600)

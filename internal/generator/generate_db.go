@@ -38,11 +38,11 @@ import (
 )
 
 func NewPostgres() (*sql.DB, error) {
-	host := os.Getenv("GOKOZYY_DB_HOST")
-	port := os.Getenv("GOKOZYY_DB_PORT")
-	user := os.Getenv("GOKOZYY_DB_USERNAME")
-	pw   := os.Getenv("GOKOZYY_DB_PW")
-	db   := os.Getenv("GOKOZYY_DB_DATABASE")
+	host := os.Getenv("GOCOZYY_DB_HOST")
+	port := os.Getenv("GOCOZYY_DB_PORT")
+	user := os.Getenv("GOCOZYY_DB_USERNAME")
+	pw   := os.Getenv("GOCOZYY_DB_PW")
+	db   := os.Getenv("GOCOZYY_DB_DATABASE")
 	ssl  := "disable"
 
 	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s",

@@ -58,13 +58,13 @@ CMD ["bun", "run", "dev", "--host"]
       - "${PORT}:${PORT}"
     env_file: .env
     environment:
-      GOKOZYY_DB_HOST: psql_gokozyy
-      GOKOZYY_DB_PORT: 5432
+      GOCOZYY_DB_HOST: psql_gocozyy
+      GOCOZYY_DB_PORT: 5432
     depends_on:
-      psql_gokozyy:
+      psql_gocozyy:
         condition: service_healthy
     networks:
-      - gokozyy_network
+      - gocozyy_network
 
   frontend:
     build:
@@ -75,33 +75,33 @@ CMD ["bun", "run", "dev", "--host"]
     ports:
       - "5173:5173"
     networks:
-      - gokozyy_network
+      - gocozyy_network
 
-  psql_gokozyy:
+  psql_gocozyy:
     image: postgres:latest
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${GOKOZYY_DB_DATABASE}
-      POSTGRES_USER: ${GOKOZYY_DB_USERNAME}
-      POSTGRES_PASSWORD: ${GOKOZYY_DB_PW}
+      POSTGRES_DB: ${GOCOZYY_DB_DATABASE}
+      POSTGRES_USER: ${GOCOZYY_DB_USERNAME}
+      POSTGRES_PASSWORD: ${GOCOZYY_DB_PW}
     ports:
-      - "${GOKOZYY_DB_PORT}:5432"
+      - "${GOCOZYY_DB_PORT}:${GOCOZYY_DB_PORT}"
     volumes:
-      - psql_data_gokozyy:/var/lib/postgresql/data
+      - psql_data_gocozyy:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${GOKOZYY_DB_USERNAME} -d ${GOKOZYY_DB_DATABASE}'"]
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${GOCOZYY_DB_USERNAME} -d ${GOCOZYY_DB_DATABASE}'"]
       interval: 5s
       timeout: 5s
       retries: 3
       start_period: 15s
     networks:
-      - gokozyy_network
+      - gocozyy_network
 
 volumes:
-  psql_data_gokozyy:
+  psql_data_gocozyy:
 
 networks:
-  gokozyy_network:
+  gocozyy_network:
 `
 	// Write Dockerfile
 	if err := os.WriteFile(filepath.Join(projectRoot, "Dockerfile"), []byte(dockerfile), 0o644); err != nil {

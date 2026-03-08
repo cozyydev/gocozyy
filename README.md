@@ -1,4 +1,4 @@
-# GOKOZYY
+# GOCOZYY
 
 [![Go Version](https://img.shields.io/badge/Go-1.23+-00ADD8?style=flat&logo=go)](https://go.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -9,12 +9,12 @@ A modern, interactive CLI tool for scaffolding full-stack web applications with 
 <div align="center">
 
 ```
- ██████╗  ██████╗ ██╗  ██╗ ██████╗ ███████╗██╗   ██╗██╗   ██╗
-██╔════╝ ██╔═══██╗██║ ██╔╝██╔═══██╗╚══███╔╝╚██╗ ██╔╝╚██╗ ██╔╝
-██║  ███╗██║   ██║█████╔╝ ██║   ██║  ███╔╝  ╚████╔╝  ╚████╔╝
-██║   ██║██║   ██║██╔═██╗ ██║   ██║ ███╔╝    ╚██╔╝    ╚██╔╝
-╚██████╔╝╚██████╔╝██║  ██╗╚██████╔╝███████╗   ██║      ██║
- ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝      ╚═╝
+ ██████╗  ██████╗  ██████╗ ██████╗ ███████╗██╗   ██╗██╗   ██╗
+██╔════╝ ██╔═══██╗██╔════╝██╔═══██╗╚══███╔╝╚██╗ ██╔╝╚██╗ ██╔╝
+██║  ███╗██║   ██║██║     ██║   ██║  ███╔╝  ╚████╔╝  ╚████╔╝ 
+██║   ██║██║   ██║██║     ██║   ██║ ███╔╝    ╚██╔╝    ╚██╔╝  
+╚██████╔╝╚██████╔╝╚██████╗╚██████╔╝███████╗   ██║      ██║   
+ ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   
 ```
 
 </div>
@@ -58,7 +58,7 @@ A modern, interactive CLI tool for scaffolding full-stack web applications with 
 Requires Go 1.23 or higher:
 
 ```bash
-go install github.com/kozykoding/gokozyy@latest
+go install github.com/kozykoding/gocozyy@latest
 ```
 
 Make sure your `$GOPATH/bin` is in your `PATH`:
@@ -72,10 +72,10 @@ export PATH=$PATH:$(go env GOPATH)/bin
 Clone the repository and build:
 
 ```bash
-git clone https://github.com/kozykoding/gokozyy.git
-cd gokozyy
+git clone https://github.com/kozykoding/gocozyy.git
+cd gocozyy
 make build
-sudo mv ./main /usr/local/bin/gokozyy
+sudo mv ./main /usr/local/bin/gocozyy
 ```
 
 Or use it directly:
@@ -87,7 +87,7 @@ go run main.go create
 ### Verify Installation
 
 ```bash
-gokozyy --help
+gocozyy --help
 ```
 
 ## Quick Start
@@ -96,7 +96,7 @@ Create your first project in 3 steps:
 
 ```bash
 # 1. Start the interactive wizard
-gokozyy create
+gocozyy create
 
 # 2. Follow the prompts to configure your project
 # (See Interactive Wizard Guide below)
@@ -192,12 +192,12 @@ Select your database option:
 **Default PostgreSQL Configuration (.env):**
 
 ```bash
-GOKOZYY_DB_HOST=localhost
-GOKOZYY_DB_PORT=5432
-GOKOZYY_DB_DATABASE=gokozyy
-GOKOZYY_DB_USERNAME=sammy
-GOKOZYY_DB_PW=thisismypassword
-GOKOZYY_DB_SCHEMA=public
+GOCOZYY_DB_HOST=localhost
+GOCOZYY_DB_PORT=5432
+GOCOZYY_DB_DATABASE=gocozyy
+GOCOZYY_DB_USERNAME=sammy
+GOCOZYY_DB_PW=thisismypassword
+GOCOZYY_DB_SCHEMA=public
 ```
 
 #### SQLite
@@ -236,7 +236,7 @@ Generates:
 - **docker-compose.yml** with 3 services:
   - `app` - Backend API server with environment configuration
   - `frontend` - Frontend development server on port 5173
-  - `psql_gokozyy` - PostgreSQL with health checks and volume persistence
+  - `psql_gocozyy` - PostgreSQL with health checks and volume persistence
 
 #### No
 
@@ -510,7 +510,7 @@ Frontend runs on `http://localhost:5173` by default.
 ```bash
 make docker-run
 # or
-docker-compose up -d psql_gokozyy
+docker-compose up -d psql_gocozyy
 ```
 
 **Stop Database:**
@@ -524,13 +524,13 @@ docker-compose down
 **Connect to Database:**
 
 ```bash
-docker exec -it psql_gokozyy psql -U sammy -d gokozyy
+docker exec -it psql_gocozyy psql -U sammy -d gocozyy
 ```
 
 **View Logs:**
 
 ```bash
-docker-compose logs -f psql_gokozyy
+docker-compose logs -f psql_gocozyy
 ```
 
 #### SQLite
@@ -572,12 +572,12 @@ PORT=42069                    # Backend API port
 APP_ENV=local                 # Environment (local, dev, prod)
 
 # PostgreSQL Configuration (if using Postgres)
-GOKOZYY_DB_HOST=localhost
-GOKOZYY_DB_PORT=5432
-GOKOZYY_DB_DATABASE=gokozyy
-GOKOZYY_DB_USERNAME=sammy
-GOKOZYY_DB_PW=thisismypassword
-GOKOZYY_DB_SCHEMA=public
+GOCOZYY_DB_HOST=localhost
+GOCOZYY_DB_PORT=5432
+GOCOZYY_DB_DATABASE=gocozyy
+GOCOZYY_DB_USERNAME=sammy
+GOCOZYY_DB_PW=thisismypassword
+GOCOZYY_DB_SCHEMA=public
 ```
 
 **Security Note:** The `.env` file is automatically added to `.gitignore` and has `0600` permissions (owner read/write only).
@@ -696,7 +696,7 @@ docker-compose logs -f
 # Specific service
 docker-compose logs -f app
 docker-compose logs -f frontend
-docker-compose logs -f psql_gokozyy
+docker-compose logs -f psql_gocozyy
 ```
 
 #### Stop Services
@@ -728,7 +728,7 @@ app:
     target: prod
   env_file: .env
   depends_on:
-    psql_gokozyy:
+    psql_gocozyy:
       condition: service_healthy
 ```
 
@@ -755,22 +755,22 @@ frontend:
 - **Bun runtime** for fast package installation
 - **Port 5173** exposed for development
 
-#### 3. PostgreSQL Database (`psql_gokozyy`)
+#### 3. PostgreSQL Database (`psql_gocozyy`)
 
 ```yaml
-psql_gokozyy:
+psql_gocozyy:
   image: postgres:latest
   environment:
-    POSTGRES_USER: ${GOKOZYY_DB_USERNAME}
-    POSTGRES_PASSWORD: ${GOKOZYY_DB_PW}
-    POSTGRES_DB: ${GOKOZYY_DB_DATABASE}
+    POSTGRES_USER: ${GOCOZYY_DB_USERNAME}
+    POSTGRES_PASSWORD: ${GOCOZYY_DB_PW}
+    POSTGRES_DB: ${GOCOZYY_DB_DATABASE}
   healthcheck:
-    test: ["CMD-SHELL", "pg_isready -U ${GOKOZYY_DB_USERNAME}"]
+    test: ["CMD-SHELL", "pg_isready -U ${GOCOZYY_DB_USERNAME}"]
     interval: 5s
     timeout: 5s
     retries: 5
   volumes:
-    - psql_data_gokozyy:/var/lib/postgresql/data
+    - psql_data_gocozyy:/var/lib/postgresql/data
 ```
 
 - **Persistent storage** with named volume
@@ -1089,7 +1089,7 @@ go version
 #### $GOPATH/bin Not in PATH
 
 ```
-Error: gokozyy: command not found
+Error: gocozyy: command not found
 ```
 
 **Solution:** Add to your shell profile:
@@ -1130,7 +1130,7 @@ Error: permission denied creating project directory
 
 ```bash
 cd ~  # Move to home directory
-gokozyy create
+gocozyy create
 ```
 
 ---
@@ -1166,13 +1166,13 @@ Error: failed to connect to postgres://...
 
 ```bash
 # Check if Docker container is running
-docker ps | grep psql_gokozyy
+docker ps | grep psql_gocozyy
 
 # Start if not running
 make docker-run
 
 # Check logs
-docker logs psql_gokozyy
+docker logs psql_gozozyy
 ```
 
 #### Air Not Reloading
@@ -1211,17 +1211,17 @@ cat frontend/tsconfig.json
 #### Docker Compose Database Not Healthy
 
 ```
-Warning: dependency on psql_gokozyy not healthy
+Warning: dependency on psql_gocozyy not healthy
 ```
 
 **Solution:** Check database logs and increase health check timeout:
 
 ```bash
 # View database logs
-docker-compose logs psql_gokozyy
+docker-compose logs psql_gocozyy
 
 # Check if PostgreSQL is ready
-docker exec psql_gokozyy pg_isready -U sammy
+docker exec psql_gocozyy pg_isready -U sammy
 ```
 
 #### Volume Permission Issues
@@ -1388,8 +1388,8 @@ Open an issue with:
 1. **Fork the repository**
 
    ```bash
-   git clone https://github.com/yourusername/gokozyy.git
-   cd gokozyy
+   git clone https://github.com/yourusername/gocozyy.git
+   cd gocozyy
    ```
 
 2. **Create a feature branch**
@@ -1432,8 +1432,8 @@ Open an issue with:
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/gokozyy.git
-cd gokozyy
+git clone https://github.com/yourusername/gocozyy.git
+cd gocozyy
 
 # Install dependencies
 go mod download
@@ -1499,7 +1499,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```
 MIT License
 
-Copyright (c) 2025 gokozyy contributors
+Copyright (c) 2025 gocozyy contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1536,8 +1536,8 @@ This project is built with and inspired by amazing open-source tools:
 ## Support
 
 - **Documentation:** You're reading it!
-- **Issues:** [GitHub Issues](https://github.com/yourusername/gokozyy/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/gokozyy/discussions)
+- **Issues:** [GitHub Issues](https://github.com/yourusername/gocozyy/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/yourusername/gocozyy/discussions)
 
 ---
 
@@ -1545,7 +1545,7 @@ This project is built with and inspired by amazing open-source tools:
 
 **Built with ❤️ using Go and Bubble Tea**
 
-[Report Bug](https://github.com/yourusername/gokozyy/issues) · [Request Feature](https://github.com/yourusername/gokozyy/issues) · [Contribute](https://github.com/yourusername/gokozyy/pulls)
+[Report Bug](https://github.com/yourusername/gocozyy/issues) · [Request Feature](https://github.com/yourusername/gocozyy/issues) · [Contribute](https://github.com/yourusername/gocozyy/pulls)
 
 **Star ⭐ this repo if you find it helpful!**
 

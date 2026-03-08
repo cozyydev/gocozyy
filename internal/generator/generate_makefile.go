@@ -8,7 +8,7 @@ import (
 func writeMakefile(cfg Config) error {
 	projectRoot := cfg.ProjectName
 
-	makefileContent := `# Simple Makefile for Gokozyy project
+	makefileContent := `# Simple Makefile for GoCozyy project
 
 # Build the application
 all: build test
@@ -23,11 +23,11 @@ run:
 
 # Create DB container
 docker-run:
-	@if docker compose up psql_gokozyy -d 2>/dev/null; then \
+	@if docker compose up psql_gocozyy -d 2>/dev/null; then \
 		: ; \
 	else \
 		echo "Falling back to Docker Compose V1"; \
-		docker-compose up psql_gokozyy -d; \
+		docker-compose up psql_gocozyy -d; \
 	fi
 
 # Shutdown DB container

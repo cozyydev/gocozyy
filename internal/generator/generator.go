@@ -21,7 +21,7 @@ func generateFrontend(cfg Config) error {
 	frontendDir := filepath.Join(cfg.ProjectName, "frontend")
 
 	fmt.Printf("◦ Scaffolding frontend in %s...\n", frontendDir)
-	fmt.Printf("  [gokozyy] cfg.Frontend = %q\n", cfg.Frontend)
+	fmt.Printf("  [gocozyy] cfg.Frontend = %q\n", cfg.Frontend)
 
 	if err := runBunCreateVite(cfg.ProjectName, "frontend"); err != nil {
 		return fmt.Errorf("bun create vite: %w", err)
@@ -38,7 +38,7 @@ func generateFrontend(cfg Config) error {
 
 	// Only patch tsconfig and install shadcn when user selected that option
 	if cfg.Frontend == "vite-react-tailwind-shadcn" {
-		fmt.Println("  [gokozyy] calling setupShadcnManualV4...")
+		fmt.Println("  [gocozyy] calling setupShadcnManualV4...")
 		if err := setupShadcnManualV4(frontendDir); err != nil {
 			return fmt.Errorf("shadcn manual v4 setup: %w", err)
 		}
