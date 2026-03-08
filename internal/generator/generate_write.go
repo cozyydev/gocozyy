@@ -57,70 +57,18 @@ func fixAppCssLogos(frontendDir string) error {
 		return fmt.Errorf("reading App.css: %w", err)
 	}
 
-	newCssContent := strings.Replace(string(cssContent), `.logo {
-  height: 6vmin;
-  pointer-events: none;
-}
+	newCssContent := string(cssContent)
 
-@media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo {
-    animation: none;
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.logo:nth-child(2) {
-  animation-delay: -1s;
-}`, `.logo {
-  height: 6vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo {
-    animation: none;
-    animation: logo-spin infinite 20s linear;
-  }
-}
+	if !strings.Contains(newCssContent, ".logos") {
+		newCssContent += `
 
 .logos {
   display: flex;
   gap: 2rem;
+  justify-content: center;
 }
-
-.logo:nth-child(2) {
-  animation-delay: -1s;
-}`, 1)
+`
+	}
 
 	if err := os.WriteFile(appCssPath, []byte(newCssContent), 0o644); err != nil {
 		return fmt.Errorf("writing App.css: %w", err)
@@ -131,7 +79,14 @@ func fixAppCssLogos(frontendDir string) error {
 		if err != nil {
 			return fmt.Errorf("reading App.tsx: %w", err)
 		}
-		newTsxContent := strings.Replace(string(tsxContent), `<div>`, `<div className="logos">`, 1)
+		newTsxContent := strings.Replace(
+			strings.Replace(string(tsxContent), "<div>", `<div className="logos">`, 1),
+			`<div>
+        <a href="https://vite.dev"`,
+			`<div className="logos">
+        <a href="https://vite.dev"`,
+			1,
+		)
 		if err := os.WriteFile(appTsxPath, []byte(newTsxContent), 0o644); err != nil {
 			return fmt.Errorf("writing App.tsx: %w", err)
 		}
@@ -140,7 +95,7 @@ func fixAppCssLogos(frontendDir string) error {
 		if err != nil {
 			return fmt.Errorf("reading App.jsx: %w", err)
 		}
-		newJsxContent := strings.Replace(string(jsxContent), `<div>`, `<div className="logos">`, 1)
+		newJsxContent := strings.Replace(string(jsxContent), "<div>", `<div className="logos">`, 1)
 		if err := os.WriteFile(appJsxPath, []byte(newJsxContent), 0o644); err != nil {
 			return fmt.Errorf("writing App.jsx: %w", err)
 		}
