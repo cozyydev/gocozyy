@@ -51,7 +51,6 @@ your new project folder to be created.`,
 			Framework:   res.Framework,
 			DBDriver:    res.DBDriver,
 			Frontend:    res.Frontend,
-			Runtime:     res.Runtime,
 			UseDocker:   res.UseDocker,
 		}
 

@@ -10,60 +10,66 @@ func writeMakefile(cfg Config) error {
 
 	makefileContent := `# Simple Makefile for GoCozyy project
 
-# Build the application
-all: build test
+PROJECT_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
+# Build the application
 build:
 	@echo "Building..."
-	@go build -o main backend/main.go
+	@cd $(PROJECT_DIR)/backend && go build -o main main.go
 
 # Run the application
 run:
-	@go run backend/main.go
+	@cd $(PROJECT_DIR)/backend && go run main.go
 
 # Create DB container
 docker-run:
-	@if docker compose up psql_gocozyy -d 2>/dev/null; then \
-		: ; \
+	@cd $(PROJECT_DIR) && \
+	if [ -f docker-compose.db.yml ]; then \
+		echo "Starting PostgreSQL..."; \
+		docker compose -f docker-compose.db.yml up -d; \
+	elif [ -f docker-compose.yml ]; then \
+		echo "Starting full stack..."; \
+		docker compose up -d; \
 	else \
-		echo "Falling back to Docker Compose V1"; \
-		docker-compose up psql_gocozyy -d; \
+		echo "No docker-compose file found. Run with --docker flag or use postgres DB."; \
+		exit 1; \
 	fi
 
 # Shutdown DB container
 docker-down:
-	@if docker compose down 2>/dev/null; then \
-		: ; \
-	else \
-		echo "Falling back to Docker Compose V1"; \
-		docker-compose down; \
+	@cd $(PROJECT_DIR) && \
+	if [ -f docker-compose.db.yml ]; then \
+		docker compose -f docker-compose.db.yml down; \
+	elif [ -f docker-compose.yml ]; then \
+		docker compose down; \
 	fi
 
 # Test the application
 test:
 	@echo "Testing..."
-	@go test ./... -v
+	@cd $(PROJECT_DIR)/backend && go test ./... -v
 
 # Clean the binary
 clean:
 	@echo "Cleaning..."
-	@rm -f main
+	@rm -f $(PROJECT_DIR)/backend/main
 
 # Live Reload (Go)
 watch:
-	@if command -v air > /dev/null; then \
-            air; \
-            echo "Watching...";\
-        else \
-            read -p "Go's 'air' is not installed. Do you want to install it? [Y/n] " choice; \
-            if [ "$$choice" != "n" ] && [ "$$choice" != "N" ]; then \
-                go install github.com/air-verse/air@latest; \
-                air; \
-            else \
-                echo "Skipping air install."; \
-                exit 1; \
-            fi; \
-        fi
+	@cd $(PROJECT_DIR)/backend && \
+	if command -v air > /dev/null 2>&1; then \
+		air; \
+		echo "Watching...";\
+	else \
+		read -p "Go's 'air' is not installed. Do you want to install it? [Y/n] " choice; \
+		if [ "$$choice" != "n" ] && [ "$$choice" != "N" ]; then \
+			go install github.com/air-verse/air@latest; \
+			air; \
+		else \
+			echo "Skipping air install."; \
+			exit 1; \
+		fi; \
+	fi
 
 .PHONY: all build run test clean watch docker-run docker-down
 `

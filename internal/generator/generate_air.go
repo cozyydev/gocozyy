@@ -8,7 +8,6 @@ import (
 func writeAirConfig(cfg Config) error {
 	projectRoot := cfg.ProjectName
 
-	// Exclude frontend directories so Air doesn't waste CPU
 	content := `root = "."
 testdata_dir = "testdata"
 tmp_dir = "tmp"
@@ -16,7 +15,7 @@ tmp_dir = "tmp"
 [build]
   args_bin = []
   bin = "./main"
-  cmd = "make build"
+  cmd = "cd backend && go build -o main main.go"
   delay = 1000
   exclude_dir = ["assets", "tmp", "vendor", "testdata", "frontend/node_modules", "frontend/dist"]
   exclude_file = []

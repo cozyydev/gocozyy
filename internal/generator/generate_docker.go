@@ -9,6 +9,44 @@ import (
 func writeDockerFiles(cfg Config, backendDir string) error {
 	projectRoot := cfg.ProjectName
 
+	if cfg.DBDriver == "postgres" {
+		dbOnlyCompose := `services:
+  psql_gocozyy:
+    image: postgres:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${GOCOZYY_DB_DATABASE}
+      POSTGRES_USER: ${GOCOZYY_DB_USERNAME}
+      POSTGRES_PASSWORD: ${GOCOZYY_DB_PW}
+    ports:
+      - "${GOCOZYY_DB_PORT}:${GOCOZYY_DB_PORT}"
+    volumes:
+      - psql_data_gocozyy:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${GOCOZYY_DB_USERNAME} -d ${GOCOZYY_DB_DATABASE}'"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - gocozyy_network
+
+volumes:
+  psql_data_gocozyy:
+
+networks:
+  gocozyy_network:
+`
+		if err := os.WriteFile(filepath.Join(projectRoot, "docker-compose.db.yml"), []byte(dbOnlyCompose), 0o644); err != nil {
+			return fmt.Errorf("writing docker-compose.db.yml: %w", err)
+		}
+	}
+
+	if !cfg.UseDocker {
+		return nil
+	}
+
 	// This Dockerfile handles Go building, Bun building, and production targets
 	dockerfile := `# Stage 1: Backend Builder
 FROM golang:1.23-alpine AS backend-builder
@@ -80,6 +118,7 @@ CMD ["bun", "run", "dev", "--host"]
   psql_gocozyy:
     image: postgres:latest
     restart: unless-stopped
+    env_file: .env
     environment:
       POSTGRES_DB: ${GOCOZYY_DB_DATABASE}
       POSTGRES_USER: ${GOCOZYY_DB_USERNAME}

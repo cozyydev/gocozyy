@@ -13,7 +13,6 @@ type Config struct {
 	Framework   string // "std" | "chi" | "gin"
 	DBDriver    string // "none" | "postgres" | "sqlite"
 	Frontend    string // "vite-react-tailwind" | "vite-react-tailwind-shadcn"
-	Runtime     string // "bun"
 	UseDocker   bool   // whether to scaffold Docker for the DB
 }
 
@@ -44,11 +43,24 @@ func generateFrontend(cfg Config) error {
 		}
 	}
 
+	// Fix App.css logos to be side-by-side
+	if err := fixAppCssLogos(frontendDir); err != nil {
+		return fmt.Errorf("fix App.css logos: %w", err)
+	}
+
 	return nil
 }
 
 func runGoModInit(dir, modulePath string) error {
 	cmd := exec.Command("go", "mod", "init", modulePath)
+	cmd.Dir = dir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+
+	cmd = exec.Command("go", "mod", "tidy")
 	cmd.Dir = dir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

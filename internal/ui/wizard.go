@@ -25,7 +25,6 @@ type Result struct {
 	Framework   string // backend: std|chi|gin
 	DBDriver    string // none|postgres|sqlite
 	Frontend    string // "vite-react-tailwind" or "vite-react-tailwind-shadcn"
-	Runtime     string // set to "bun"
 	UseDocker   bool
 	Confirmed   bool
 }
@@ -192,7 +191,6 @@ func (m WizardModel) updateFrontend(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	case "y":
 		if v, ok := m.frontendList.SelectedValue(); ok {
 			m.result.Frontend = v
-			m.result.Runtime = "bun"
 			m.step = stepSummary
 			return m, nil
 		}
@@ -309,7 +307,6 @@ func (m WizardModel) viewSummary() string {
 	b.WriteString(fmt.Sprintf("Backend:    %s\n", OptionStyle.Render(fw)))
 	b.WriteString(fmt.Sprintf("Database:   %s\n", OptionStyle.Render(db)))
 	b.WriteString(fmt.Sprintf("Frontend:   %s\n", OptionStyle.Render(fe)))
-	b.WriteString(fmt.Sprintf("Runtime:    %s\n", OptionStyle.Render("bun")))
 	docker := "no"
 	if m.result.UseDocker {
 		docker = "yes"
