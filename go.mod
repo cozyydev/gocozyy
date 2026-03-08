@@ -1,4 +1,4 @@
-module github.com/kozykoding/gokozyy
+module github.com/cozyydev/gocozyy
 
 go 1.25.5
 

@@ -1,15 +1,15 @@
 package cmd
 
 /*
-Copyright © 2025 SAMMY SAMMY@KOZYKODING.COM
+Copyright © 2025 SAMMY SAMMY@COZYY.DEV
 */
 
 import (
 	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/kozykoding/gokozyy/internal/generator"
-	"github.com/kozykoding/gokozyy/internal/ui"
+	"github.com/cozyydev/gocozyy/internal/generator"
+	"github.com/cozyydev/gocozyy/internal/ui"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +28,7 @@ var createCmd = &cobra.Command{
 	Long: `A quick way to start up / bootstrap a project with
 separate front and backends. 
 
-Run the gokozyy create command inside the directory where you want 
+Run the gocozyy create command inside the directory where you want 
 your new project folder to be created.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		m := ui.NewWizardModel()

@@ -1,8 +1,7 @@
 package cmd
 
 /*
-Copyright © 2025 SAMMY SAMMY@KOZYKODING.COM
-*/
+Copyright © 2025 SAMMY SAMMY@COZYY.DEV*/
 
 import (
 	"os"
@@ -12,12 +11,12 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gokozyy",
+	Use:   "gocozyy",
 	Short: "Create a new Go + Vite project with Bun",
 	Long: `A quick way to start up / bootstrap a project with
 separate front and backends. 
 
-Run the gokozyy create command inside the directory where you want 
+Run the gocozyy create command inside the directory where you want 
 your new project folder to be created.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
