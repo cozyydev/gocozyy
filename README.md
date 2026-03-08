@@ -24,7 +24,7 @@ A modern, interactive CLI tool for scaffolding full-stack web applications with 
 ### Backend Options
 
 - **3 Framework Choices:**
-  - **Standard Library** - Pure Go `net/http` package (zero dependencies)
+  - **Standard Library** - Go `net/http` package (zero dependencies)
   - **Chi** - Lightweight, idiomatic HTTP router
   - **Gin** - High-performance web framework with rich middleware
 
@@ -58,7 +58,7 @@ A modern, interactive CLI tool for scaffolding full-stack web applications with 
 Requires Go 1.23 or higher:
 
 ```bash
-go install github.com/kozykoding/gocozyy@latest
+go install github.com/cozyydev/gocozyy@latest
 ```
 
 Make sure your `$GOPATH/bin` is in your `PATH`:
@@ -72,7 +72,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 Clone the repository and build:
 
 ```bash
-git clone https://github.com/kozykoding/gocozyy.git
+git clone https://github.com/cozyydev/gocozyy.git
 cd gocozyy
 make build
 sudo mv ./main /usr/local/bin/gocozyy
@@ -149,7 +149,7 @@ Choose your preferred backend framework:
 
 | Framework            | Description                                            | Best For                                               |
 | -------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| **Standard Library** | Pure Go `net/http` with `http.NewServeMux()`           | Simple APIs, learning Go, minimal dependencies         |
+| **Standard Library** | Go `net/http` with `http.NewServeMux()`           | Simple APIs, learning Go, minimal dependencies         |
 | **Chi**              | Lightweight, idiomatic router built on stdlib concepts | RESTful APIs, middleware-heavy apps, Go purists        |
 | **Gin**              | High-performance framework with rich ecosystem         | Complex apps, need for speed, comprehensive middleware |
 
@@ -196,7 +196,7 @@ GOCOZYY_DB_HOST=localhost
 GOCOZYY_DB_PORT=5432
 GOCOZYY_DB_DATABASE=gocozyy
 GOCOZYY_DB_USERNAME=sammy
-GOCOZYY_DB_PW=thisismypassword
+GOCOZYY_DB_PW=supersecretpassword
 GOCOZYY_DB_SCHEMA=public
 ```
 
@@ -576,7 +576,7 @@ GOCOZYY_DB_HOST=localhost
 GOCOZYY_DB_PORT=5432
 GOCOZYY_DB_DATABASE=gocozyy
 GOCOZYY_DB_USERNAME=sammy
-GOCOZYY_DB_PW=thisismypassword
+GOCOZYY_DB_PW=supersecretpassword
 GOCOZYY_DB_SCHEMA=public
 ```
 
@@ -1388,7 +1388,7 @@ Open an issue with:
 1. **Fork the repository**
 
    ```bash
-   git clone https://github.com/yourusername/gocozyy.git
+   git clone https://github.com/cozyydev/gocozyy.git
    cd gocozyy
    ```
 
@@ -1432,7 +1432,7 @@ Open an issue with:
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/gocozyy.git
+git clone https://github.com/cozyydev/gocozyy.git
 cd gocozyy
 
 # Install dependencies
@@ -1536,8 +1536,8 @@ This project is built with and inspired by amazing open-source tools:
 ## Support
 
 - **Documentation:** You're reading it!
-- **Issues:** [GitHub Issues](https://github.com/yourusername/gocozyy/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/gocozyy/discussions)
+- **Issues:** [GitHub Issues](https://github.com/cozyydev/gocozyy/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/cozyydev/gocozyy/discussions)
 
 ---
 
@@ -1545,7 +1545,7 @@ This project is built with and inspired by amazing open-source tools:
 
 **Built with ❤️ using Go and Bubble Tea**
 
-[Report Bug](https://github.com/yourusername/gocozyy/issues) · [Request Feature](https://github.com/yourusername/gocozyy/issues) · [Contribute](https://github.com/yourusername/gocozyy/pulls)
+[Report Bug](https://github.com/cozyydev/gocozyy/issues) · [Request Feature](https://github.com/cozyydev/gocozyy/issues) · [Contribute](https://github.com/cozyydev/gocozyy/pulls)
 
 **Star ⭐ this repo if you find it helpful!**
 
